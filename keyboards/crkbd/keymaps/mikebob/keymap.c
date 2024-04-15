@@ -21,54 +21,35 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#include <stdio.h>
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ESC,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   MO(1),  KC_SPC,     KC_ENT,   MO(2), KC_RALT
-                                      //`--------------------------'  `--------------------------'
+ [0] = LAYOUT_split_3x6_3(
 
-  ),
+     KC_ESCAPE,           KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,            KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,        KC_BSPC,
+        KC_TAB,           KC_A,           KC_S,           KC_D,           KC_F,           KC_G,            KC_H,           KC_J,           KC_K,           KC_L,        KC_SCLN,       KC_QUOTE,
+       KC_LSFT,           KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,            KC_N,           KC_M,       KC_COMMA,         KC_DOT,       KC_SLASH,      KC_ESCAPE,
+                                                       KC_LCTL,        KC_LGUI,       KC_SPACE,        KC_ENTER,        RGB_M_R,        RGB_M_B
+),
+[1] = LAYOUT_split_3x6_3(
 
-    [1] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT,   MO(3), KC_RALT
-                                      //`--------------------------'  `--------------------------'
-  ),
+        KC_TAB,           KC_1,           KC_2,           KC_3,           KC_4,           KC_5,            KC_6,           KC_7,           KC_8,           KC_9,           KC_0,      KC_DELETE,
+       KC_LCTL,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,         KC_LEFT,        KC_DOWN,          KC_UP,       KC_RIGHT,        KC_PGUP,          KC_NO,
+       KC_LSFT,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO,        KC_PGDN,          KC_NO,
+                                                       KC_LGUI,        KC_TRNS,       KC_SPACE,        KC_ENTER,        KC_TRNS,        KC_RALT
+),
+[2] = LAYOUT_split_3x6_3(
 
-    [2] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, KC_TILD,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI,   MO(3),  KC_SPC,     KC_ENT, _______, KC_RALT
-                                      //`--------------------------'  `--------------------------'
-  ),
+        KC_TAB,     LSFT(KC_1),     LSFT(KC_2),     LSFT(KC_3),     LSFT(KC_4),     LSFT(KC_5),      LSFT(KC_6),     LSFT(KC_7),     LSFT(KC_8),     LSFT(KC_9),     LSFT(KC_0),        KC_BSPC,
+       KC_LCTL,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,        KC_MINUS,       KC_EQUAL,        KC_LBRC,        KC_RBRC,        KC_BSLS,       KC_GRAVE,
+       KC_LSFT,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  LSFT(KC_MINUS), LSFT(KC_EQUAL),  LSFT(KC_LBRC),  LSFT(KC_RBRC),  LSFT(KC_BSLS), LSFT(KC_GRAVE),
+                                                       KC_LGUI,        KC_TRNS,       KC_SPACE,        KC_ENTER,        KC_TRNS,        KC_RALT
+),
+[3] = LAYOUT_split_3x6_3(
 
-    [3] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, KC_RALT
-                                      //`--------------------------'  `--------------------------'
-  )
+        QK_RBT,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+       RGB_TOG,        RGB_HUI,        RGB_SAI,        RGB_VAI,          KC_NO,          KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+       RGB_MOD,        RGB_HUD,        RGB_SAD,        RGB_VAD,          KC_NO,          KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
+                                                       KC_LGUI,        KC_TRNS,       KC_SPACE,        KC_ENTER,        KC_TRNS,        KC_RALT
+)
+
 };
 
 // clang-format on
@@ -77,19 +58,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 /* 32 * 32 logo */
-// static void render_logo(void) {
-//     static const char PROGMEM hexagram_logo[] = {
-// 	0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xc0, 0x70, 0x18, 0x06, 
-//     0x06, 0x18, 0x70, 0xc0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 
-//     0x00, 0x00, 0x01, 0x07, 0x1f, 0x32, 0x66, 0xc4, 0x6c, 0x38, 0x1e, 0x37, 0x61, 0xc0, 0x80, 0x80, 
-//     0x80, 0x80, 0xc0, 0x61, 0x37, 0x1e, 0x38, 0x6c, 0xc4, 0x66, 0x32, 0x1f, 0x07, 0x01, 0x00, 0x00, 
-//     0x00, 0x00, 0x80, 0xe0, 0xf8, 0x4c, 0x66, 0x23, 0x36, 0x1c, 0x78, 0xec, 0x86, 0x03, 0x01, 0x01, 
-//     0x01, 0x01, 0x03, 0x86, 0xec, 0x78, 0x1c, 0x36, 0x23, 0x66, 0x4c, 0xf8, 0xe0, 0x80, 0x00, 0x00, 
-//     0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x0e, 0x18, 0x60, 
-//     0x60, 0x18, 0x0e, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00
-// };
-//     oled_write_raw_P(hexagram_logo, sizeof(hexagram_logo));
-// }
+static void render_logo(void) {
+    static const char PROGMEM hexagram_logo[] = {
+	0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xc0, 0x70, 0x18, 0x06, 
+    0x06, 0x18, 0x70, 0xc0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 
+    0x00, 0x00, 0x01, 0x07, 0x1f, 0x32, 0x66, 0xc4, 0x6c, 0x38, 0x1e, 0x37, 0x61, 0xc0, 0x80, 0x80, 
+    0x80, 0x80, 0xc0, 0x61, 0x37, 0x1e, 0x38, 0x6c, 0xc4, 0x66, 0x32, 0x1f, 0x07, 0x01, 0x00, 0x00, 
+    0x00, 0x00, 0x80, 0xe0, 0xf8, 0x4c, 0x66, 0x23, 0x36, 0x1c, 0x78, 0xec, 0x86, 0x03, 0x01, 0x01, 
+    0x01, 0x01, 0x03, 0x86, 0xec, 0x78, 0x1c, 0x36, 0x23, 0x66, 0x4c, 0xf8, 0xe0, 0x80, 0x00, 0x00, 
+    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x03, 0x0e, 0x18, 0x60, 
+    0x60, 0x18, 0x0e, 0x03, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00
+};
+    oled_write_raw_P(hexagram_logo, sizeof(hexagram_logo));
+}
 
 
 
@@ -236,7 +217,7 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
 /* KEYBOARD PET END */
 
 static void print_logo_narrow(void) {
-    // render_logo();
+    render_logo();
 if (current_wpm > 0) {
     anim_sleep = timer_read32();
     /* wpm counter */
