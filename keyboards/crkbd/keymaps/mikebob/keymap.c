@@ -56,7 +56,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef OLED_ENABLE
 
-
 /* 32 * 32 logo */
 static void render_logo(void) {
     static const char PROGMEM hexagram_logo[] = {
@@ -71,8 +70,6 @@ static void render_logo(void) {
 };
     oled_write_raw_P(hexagram_logo, sizeof(hexagram_logo));
 }
-
-
 
 /* KEYBOARD PET START */
 
@@ -218,24 +215,23 @@ static void render_luna(int LUNA_X, int LUNA_Y) {
 
 static void print_logo_narrow(void) {
     render_logo();
-if (current_wpm > 0) {
-    anim_sleep = timer_read32();
-    /* wpm counter */
-    oled_set_cursor(0, 14);
-    oled_write(get_u8_str(get_current_wpm(), '0'), false);
+    
+    if (current_wpm > 0) {
+        anim_sleep = timer_read32();
+        
+        // wpm counter
+        oled_set_cursor(0, 14);
+        oled_write(get_u8_str(get_current_wpm(), '0'), false);
+        oled_set_cursor(0, 15);
+        oled_write(" wpm", false);
 
-    oled_set_cursor(0, 15);
-    oled_write(" wpm", false);
+        // fixes the screen on and off bug
 
- /* this fixes the screen on and off bug */
-   
     } else if(timer_elapsed32(anim_sleep) > OLED_TIMEOUT) {
         /* clear */
         oled_set_cursor(0,0);
         oled_write("                                                                                                                        ", false);
         oled_off();
-       
-   
     }
 }
 
@@ -261,11 +257,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 static void print_status_narrow(void) {
-   
 
     /* Print current layer */
     oled_write("LAYER", false);
-
     oled_set_cursor(0, 6);
 
     switch (get_highest_layer(layer_state)) {
@@ -290,24 +284,20 @@ static void print_status_narrow(void) {
         default:
             oled_write("Undef", false);
     }
-
-
-    /* KEYBOARD PET RENDER START */
-
+    /* KEYBOARD PET RENDER */
     render_luna(0, 13);
-
-    /* KEYBOARD PET RENDER END */
 }
 
-oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
+oled_rotation_t oled_init_user(oled_rotation_t rotation) { 
+    return OLED_ROTATION_270; 
+}
 
 bool oled_task_user(void) {
-    /* KEYBOARD PET VARIABLES START */
 
+    // KEYBOARD PET VARIABLES START
     current_wpm   = get_current_wpm();
     led_usb_state = host_keyboard_led_state();
-
-    /* KEYBOARD PET VARIABLES END */
+    // KEYBOARD PET VARIABLES END
 
     if (is_keyboard_master()) {
         print_status_narrow();
@@ -318,10 +308,9 @@ bool oled_task_user(void) {
 }
 
 #endif
- bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        /* KEYBOARD PET STATUS START */
- 
+        // KEYBOARD PET STATUS START
         case KC_LCTL:
             isSneaking = record->event.pressed;
             break;
@@ -334,9 +323,7 @@ bool oled_task_user(void) {
         case KC_CAPS:
             isBarking = record->event.pressed;
             break;
- 
-        /* KEYBOARD PET STATUS END */
-}
-
-return true;
+        // KEYBOARD PET STATUS END
+    }
+    return true;
 }
