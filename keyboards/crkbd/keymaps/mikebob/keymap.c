@@ -116,17 +116,31 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //     }
 // }
 
+enum keycodes {
+    HYPR_SPC = MT(MOD_HYPR, KC_SPC),
+    MEH_SPC = MT(MOD_LCTL | MOD_LALT | MOD_LSFT, KC_SPC),
+    LALT_ENT = MT(MOD_LALT, KC_ENT),
+    RSE_LEADER = LT(_SECOND, QK_LEAD)
+};
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_LCTL:
+        case KC_RCTL:
             isSneaking = record->event.pressed;
             break;
-        case KC_SPC:
+        case HYPR_SPC:
             isJumping = record->event.pressed;
             if (isJumping) {
                 showedJump = false;
             }
             break;
+        case RSE_LEADER:
+            if (record->tap.count && record->event.pressed) {
+                leader_start();
+                return false;        // Return false to ignore further processing of key
+            }
+            break;            
     }
     return true;
 }
@@ -136,23 +150,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
      KC_ESCAPE,           KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,            KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,        KC_BSPC,
         KC_TAB,           KC_A,           KC_S,           KC_D,           KC_F,           KC_G,            KC_H,           KC_J,           KC_K,           KC_L,        KC_SCLN,       KC_QUOTE,
-       KC_LSFT,           KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,            KC_N,           KC_M,       KC_COMMA,         KC_DOT,       KC_SLASH,      KC_ESCAPE,
-                                                       KC_LCTL,        KC_LGUI,       KC_SPACE,        KC_ENTER,        RGB_M_R,        RGB_M_B
+       KC_LSFT,           KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,            KC_N,           KC_M,       KC_COMMA,         KC_DOT,       KC_SLASH,      KC_RSFT,
+                                                       KC_LGUI,      MO(_FIRST),       HYPR_SPC,        LALT_ENT,        RGB_M_R,        RSE_LEADER
 ),
 [_FIRST] = LAYOUT_split_3x6_3(
+
+       KC_TAB, LSFT(KC_1), LSFT(KC_2), LSFT(KC_3), LSFT(KC_4), LSFT(KC_5),         LSFT(KC_6),     LSFT(KC_7),     LSFT(KC_8),     LSFT(KC_9),     LSFT(KC_0),        KC_BSPC,
+       _______, KC_1, KC_2, KC_3, KC_4, KC_5,                                       KC_MINUS,       KC_EQUAL,        KC_LBRC,        KC_RBRC,        KC_BSLS,       KC_GRAVE,
+       KC_LCTL, KC_6, KC_7, KC_8, KC_9, KC_0,                                       LSFT(KC_MINS), LSFT(KC_EQL),  LSFT(KC_LBRC),  LSFT(KC_RBRC),  LSFT(KC_BSLS), LSFT(KC_GRAVE),
+                                                       _______,        _______,       _______,        _______,        KC_TRNS,        KC_RALT
+),
+[_SECOND] = LAYOUT_split_3x6_3(
 
         KC_TAB,           KC_1,           KC_2,           KC_3,           KC_4,           KC_5,            KC_6,           KC_7,           KC_8,           KC_9,           KC_0,      KC_DELETE,
        KC_LCTL,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,         KC_LEFT,        KC_DOWN,          KC_UP,       KC_RIGHT,        KC_PGUP,          KC_NO,
        KC_LSFT,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO,        KC_PGDN,          KC_NO,
-                                                       KC_LGUI,        KC_TRNS,       KC_SPACE,        KC_ENTER,        KC_TRNS,        KC_RALT
+                                                       _______,        _______,          KC_NO,           KC_NO,          KC_NO,        KC_RALT
 ),
-[_SECOND] = LAYOUT_split_3x6_3(
 
-        KC_TAB,     LSFT(KC_1),     LSFT(KC_2),     LSFT(KC_3),     LSFT(KC_4),     LSFT(KC_5),      LSFT(KC_6),     LSFT(KC_7),     LSFT(KC_8),     LSFT(KC_9),     LSFT(KC_0),        KC_BSPC,
-       KC_LCTL,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,        KC_MINUS,       KC_EQUAL,        KC_LBRC,        KC_RBRC,        KC_BSLS,       KC_GRAVE,
-       KC_LSFT,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,  LSFT(KC_MINUS), LSFT(KC_EQUAL),  LSFT(KC_LBRC),  LSFT(KC_RBRC),  LSFT(KC_BSLS), LSFT(KC_GRAVE),
-                                                       KC_LGUI,        KC_TRNS,       KC_SPACE,        KC_ENTER,        KC_TRNS,        KC_RALT
-),
 [_THIRD] = LAYOUT_split_3x6_3(
 
         QK_RBT,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,           KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,          KC_NO,
