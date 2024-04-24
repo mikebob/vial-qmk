@@ -3,7 +3,7 @@ WPM_ENABLE = yes  # Enable word per minute counter
 LTO_ENABLE = yes  # Makes hex file smaller
 OLED_ENABLE = yes # Enable OLEDs
 MAGIC_ENABLE = no
-GRAVE_ESC_ENABLE = no
+GRAVE_ESC_ENABLE = yes
 SPACE_CADET_ENABLE = no
 COMMAND_ENABLE = no
 
@@ -25,8 +25,6 @@ COMMAND_ENABLE = no
 # OLED_DRIVER         = SSD1306
 # EXTRAKEY_ENABLE     = yes
 # COMBO_ENABLE        = no
-
-
 
 # ----??
 # QMK_SETTINGS        = no
